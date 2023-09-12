@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello React!</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+      function App() {
+        // const time = new Date().toLocaleTimeString();
+        const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+        React.useEffect(() => {
+          setInterval(() => {
+            setTime(new Date().toLocaleTimeString());
+          }, 1000);
+        }, []);
+
+        return React.createElement("header", null, `Hello! It's ${time}`);
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(React.createElement(App));
+    </script>
+  </body>
+</html>
+
+<!-- 
+    Esse é um exemplo de uma das mais simples aplicações utilizando o React.
+    Para podermos utilizá-lo e deixá-lo pronto, 
+    apenas baixei os scripts da documentação oficial (sem a necessidade de setar todo um ambiente maior para tal)
+
+    Depois, selecionei uma div para "cuspir o código em React", criando nela a raiz do React para, posteriormente,
+    renderizar o componente App.
+
+    No componente App, utilizei o hook useState para atualizar o estado da constante "time", que tem como valor inicial
+    a geração da data atual no formato de tempo local
+
+    O hook useEffect serve para também atualizar o "time", através da const setTime (que atualiza a const time) a cada
+    1000ms, utilizando a função setInterval, nativa do JS.
+
+    O retorno dessa função, cria um elemento "header", que tem como filho a template string "Hello! It's ${time}"
+
+-->
